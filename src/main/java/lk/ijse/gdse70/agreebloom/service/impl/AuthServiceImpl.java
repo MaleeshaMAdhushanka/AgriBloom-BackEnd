@@ -24,10 +24,10 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
-    private  final JWTService jwtService;
+    private final JWTService jwtService;
     private final Mapper mapper;
     private final PasswordEncoder passwordEncoder;
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
 
     @Override

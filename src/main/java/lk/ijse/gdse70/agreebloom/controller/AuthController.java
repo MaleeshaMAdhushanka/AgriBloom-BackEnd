@@ -1,4 +1,4 @@
-package lk.ijse.gdse70.agreebloom.config;
+package lk.ijse.gdse70.agreebloom.controller;
 
 import jakarta.validation.Valid;
 import lk.ijse.gdse70.agreebloom.jwtmodels.AuthRequest;
@@ -11,8 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Authentication controller handling sign-in, sign-up and token refresh operations.
+ * The controller maps to multiple URL patterns to support different frontend configurations.
+ */
 @RestController
-@RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @Slf4j
@@ -20,7 +23,8 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping(value = "signUp", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    // Original URL pattern
+    @PostMapping(value = "api/auth/v1/signUp", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JwtAuthResponse> signUp(@Valid @RequestBody AuthRequest signUp) {
 
         log.info("Received sign-up request for email: {}", signUp.getEmail());
@@ -32,7 +36,11 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping(value = "signIn", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    // Alternative URL pattern
+
+
+    // Original URL pattern
+    @PostMapping(value = "api/auth/v1/signIn", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JwtAuthResponse> signIn(@Valid @RequestBody AuthRequest signIn) {
 
         log.info("Received sign-in request for email: {}", signIn.getEmail());
@@ -44,7 +52,10 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping(value = "refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+
+
+    // Original URL pattern
+    @PostMapping(value = "api/auth/v1/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JwtAuthResponse> refreshToken(@RequestParam("refreshToken") String refreshToken) {
 
         log.info("Received token refresh request");
@@ -55,5 +66,6 @@ public class AuthController {
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
 
 }
