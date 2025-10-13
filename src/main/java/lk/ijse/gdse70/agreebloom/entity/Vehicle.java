@@ -19,7 +19,7 @@ public class Vehicle {
     private String licensePlateNumber;
     private String vehicleCategory;
     private String fuelType;
-    private String statue;
+    private String status;
     private  String remarks;
 
 
