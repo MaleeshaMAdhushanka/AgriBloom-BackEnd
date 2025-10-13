@@ -133,6 +133,15 @@ public class Mapper {
         modelMapper.typeMap(User.class, UserDTO.class).addMappings(mapper -> mapper.skip(UserDTO::setPassword));
 
     }
+
+    public Vehicle convertToVehicleEntity(VehicleDTO vehicleDTO) {
+        return modelMapper.map(vehicleDTO, Vehicle.class);
+    }
+
+    public VehicleDTO convertToVehicleDTO(Vehicle vehicle) {
+        return modelMapper.map(vehicle, VehicleDTO.class);
+    }
+
     public List<VehicleDTO> convertToVehicleDTOList(List<Vehicle> vehicles) {return modelMapper.map(vehicles, new TypeToken<List<VehicleDTO>>() {}.getType());}
 
     public Crop convertToCropEntity(CropDTO<MultipartFile> cropDTO) { return modelMapper.map(cropDTO, Crop.class);}
@@ -170,5 +179,7 @@ public class Mapper {
     public CropDetailDTO<String> convertToCropDetailDTO(CropDetail cropDetail) {return modelMapper.map(cropDetail, new TypeToken<CropDetailDTO<String>>() {}.getType());}
 
     public List<CropDetailDTO<String>> convertToCropDetailDTOList(List<CropDetail> cropDetails) {return modelMapper.map(cropDetails, new TypeToken<List<CropDetailDTO<String>>>() {}.getType());}
+
+
 }
 
